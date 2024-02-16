@@ -14,7 +14,9 @@ func main() {
 	r.PUT("/update/item", controller.Update)
 	r.POST("/upload", controller.UploadFile)
 	r.POST("/addItem", controller.AddItem)
+	r.POST("/user/store", controller.Tambahdata)
 	r.GET("/items", controller.ListPost)
+
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
