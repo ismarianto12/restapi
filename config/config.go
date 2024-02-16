@@ -9,10 +9,10 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 )
 
-var dbmap = initDb()
+var dbmap = InitDb()
 
-func initDb() *gorp.DbMap {
-	db, err := sql.Open("mysql", "user:password@tcp(localhost:3308)/aplikasi_siswa")
+func InitDb() *gorp.DbMap {
+	db, err := sql.Open("mysql", "root:@tcp(localhost:3308)/aplikasi_siswa")
 	checkErr(err, "sql.Open failed")
 
 	dbmap := &gorp.DbMap{Db: db, Dialect: gorp.MySQLDialect{"InnoDB", "UTF8"}}
