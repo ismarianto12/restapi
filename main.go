@@ -15,8 +15,9 @@ func main() {
 	r.POST("/upload", controller.UploadFile)
 	r.POST("/addItem", controller.AddItem)
 	r.POST("/user/store", controller.Tambahdata)
-	r.GET("/items", controller.ListPost)
-
+	r.GET("/user/list", controller.ListPost)
+	r.GET("/api/looping", controller.Tesloping)
+	r.GET("/api/getsiswa", controller.GetSiswa)
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
