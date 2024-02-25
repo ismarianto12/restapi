@@ -14,6 +14,9 @@ type Login struct {
 	Password string `json:"password"`
 	Level    string `json:"password"`
 }
+type Checking struct {
+	Levelid string `json:"level_id"`
+}
 
 func ListPost(c *gin.Context) {
 	var user []models.User
@@ -31,6 +34,16 @@ func ListPost(c *gin.Context) {
 
 }
 
+func Chparam(c *gin.Context) {
+	var checking Checking
+	var dbmap = config.InitDb()
+	data := dbmap.QueryRow(`select * from tmlevel_id where id= ?`, checking.Levelid)
+	if data == nil {
+		c.JSON(400, gin.H{"response": "data Kosong"})
+	}
+	c.JSON(200, gin.H{"response": data})
+}
+
 func Tambahdata(c *gin.Context) {
 	var dbmap = config.InitDb()
 	var login Login
@@ -45,6 +58,11 @@ func Tambahdata(c *gin.Context) {
 	} else {
 		c.JSON(400, gin.H{"response": err.Error()})
 	}
+}
+
+func updateData(c *gin.Context) {
+	// var username := c.
+	// test := rian.param
 }
 
 func Tesloping(c *gin.Context) {

@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"sort"
 
 	"github.com/gin-gonic/gin"
 )
@@ -39,8 +40,6 @@ func Update(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"err": err.Error()})
 	}
-	//	var name = Payload.Name
-	//	var price = Payload.Price
 	var id = Payload.ID
 	c.JSON(http.StatusOK, gin.H{
 		"data payload": id,
@@ -57,4 +56,18 @@ func UploadFile(c *gin.Context) {
 	log.Println(file.Filename)
 	c.SaveUploadedFile(file, "./uploads")
 	c.String(http.StatusOK, fmt.Sprintf("'%s' uploaded!", file.Filename))
+}
+
+func ParsingArray(c *gin.Context) {
+	ages := []int{1, 2, 2, 3, 4, 5}
+	ended := []string{"aplikasi", "testing", "fuck"}
+
+	sort.Ints(ages)
+	fmt.Println(ages)
+	fmt.Println(ended)
+
+	c.JSON(http.StatusOK, gin.H{
+		"data":     ages,
+		"messages": "data berhasil di update",
+	})
 }
